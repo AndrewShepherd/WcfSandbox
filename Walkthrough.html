@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WCF Walkthrough</title>
+
+    <style type="text/css">
+        body
+        {
+            font-family:Calibri;
+        }
+
+        header
+        {
+            font-weight:bold;
+            font-size:larger;
+        }
+
+    </style>
+</head>
+<body>
+    <header>Security Walkthrough</header>
+    <article>
+        <p>
+            The goal is to create secure two-way communication using NetTcpBinding.
+        </p>
+        <p>This will involve having a private key on the server, and a public key on the client</p>
+        <p>The steps, as I remember, as as follows:</p>
+        <ul>
+            <li>Generate a certificate using <code>makecert</code></li>
+            <li>Install this certificate into your operating system somewhere</li>
+            <li>Tell the server to use it</li>
+            <li>Tell the client to expect it</li>
+        </ul>
+        <p>I'm not sure how this will work using two-way NetTcpBinding</p>
+        <p>To demonstrate this, we will use a Chatroom application</p>
+            
+    </article>
+</body>
+</html>
