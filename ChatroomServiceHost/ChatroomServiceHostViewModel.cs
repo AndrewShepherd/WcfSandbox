@@ -44,10 +44,12 @@ namespace ChatroomServiceHost
         }
 
         ServiceHost _serviceHost;
+        ChatroomService _serviceInstance;
 
         public void OpenHost()
         {
-            _serviceHost = new ServiceHost(typeof(ChatroomService));
+            _serviceInstance = new ChatroomService();
+            _serviceHost = new ServiceHost(_serviceInstance);
             _serviceHost.Open();
             Notify(_ => _.CanOpenHost);
             Notify(_ => _.CanCloseHost);
@@ -58,6 +60,7 @@ namespace ChatroomServiceHost
         {
             _serviceHost.Close();
             _serviceHost = null;
+            _serviceInstance = null;
             Notify(_ => _.CanOpenHost);
             Notify(_ => _.CanCloseHost);
         }

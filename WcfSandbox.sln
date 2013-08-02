@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatroomServiceHost", "Chat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfUtils", "WpfUtils\WpfUtils.csproj", "{014F9837-EB50-4A7D-9396-CD3ABA1CD91B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatroomClient", "ChatroomClient\ChatroomClient.csproj", "{9B461018-D4FE-4984-BB2F-40AB40813236}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{014F9837-EB50-4A7D-9396-CD3ABA1CD91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{014F9837-EB50-4A7D-9396-CD3ABA1CD91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{014F9837-EB50-4A7D-9396-CD3ABA1CD91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B461018-D4FE-4984-BB2F-40AB40813236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B461018-D4FE-4984-BB2F-40AB40813236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B461018-D4FE-4984-BB2F-40AB40813236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B461018-D4FE-4984-BB2F-40AB40813236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
