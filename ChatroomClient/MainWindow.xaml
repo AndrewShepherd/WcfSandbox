@@ -1,8 +1,12 @@
 ﻿<Window x:Class="ChatroomClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ChatroomClient"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Window.Resources>
+        <local:ChatroomClientViewModel x:Key="ViewModel" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource ViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -12,10 +16,12 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Label>Name</Label>
-            <TextBox Grid.Column="1" />
-            <Button Grid.Column="2">Log In</Button>
+            <TextBox Grid.Column="1" Text="{Binding AvatarName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Column="2" Command="{Binding LogInCommand}">Log In</Button>
+            <Button Grid.Column="3" Command="{Binding LogOutCommand}">Log Out</Button>
         </Grid>
         <Viewbox Grid.Row="1">
             <TextBlock>

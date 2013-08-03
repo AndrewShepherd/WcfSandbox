@@ -16,32 +16,8 @@ using ChatroomServiceImpl;
 
 namespace ChatroomServiceHost
 {
-    class ChatroomServiceHostViewModel : INotifyPropertyChanged
+    class ChatroomServiceHostViewModel : ViewModel<ChatroomServiceHostViewModel>
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        private static string ExtractPropertyName(LambdaExpression l)
-        {
-            MemberExpression memberExpression = (MemberExpression)l.Body;
-            return memberExpression.Member.Name;
-        }
-
-        readonly ConcurrentBag<string> _propertiesToNotifyOn = new ConcurrentBag<string>();
-        readonly Dispatcher _mainDispatcher = Dispatcher.CurrentDispatcher;
-        private void Notify<T>(Expression<Func<ChatroomServiceHostViewModel, T>> propName)
-        {
-            _propertiesToNotifyOn.Add(ExtractPropertyName(propName));
-            _mainDispatcher.BeginInvoke(new Action(() =>
-            {
-                var dg = this.PropertyChanged;
-                string prop;
-                while(_propertiesToNotifyOn.TryTake(out prop))
-                {
-                    dg(this, new PropertyChangedEventArgs(prop));
-                }
-            }));
-        }
 
         ServiceHost _serviceHost;
         ChatroomService _serviceInstance;
