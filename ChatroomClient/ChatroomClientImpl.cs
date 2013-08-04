@@ -9,11 +9,46 @@ using ChatroomServiceInterfaces;
 
 namespace ChatroomClient
 {
+    class LoggedInEventArgs : EventArgs
+    {
+        public string AvatarName { get; set; }
+    }
+
+    class LoggedOutEventArgs : EventArgs
+    {
+        public string AvatarName { get; set; }
+    }
+
+
+
+
     class ChatroomClientImpl : IChatRoomCallback
     {
+
+        public event EventHandler<LoggedInEventArgs> SomebodyLoggedIn;
+        public event EventHandler<LoggedOutEventArgs> SomebodyLoggedOut;
+
         void IChatRoomCallback.SomebodySaid(string name, string text)
         {
-            throw new NotImplementedException();
+
+        }
+
+        void IChatRoomCallback.SomebodyLoggedIn(string name)
+        {
+            var dg = this.SomebodyLoggedIn;
+            if (dg != null)
+            {
+                dg(this, new LoggedInEventArgs { AvatarName = name });
+            }
+        }
+
+        void IChatRoomCallback.SomebodyLoggedOut(string name)
+        {
+            var dg = this.SomebodyLoggedOut;
+            if (dg != null)
+            {
+                dg(this, new LoggedOutEventArgs { AvatarName = name });
+            }
         }
     }
 }

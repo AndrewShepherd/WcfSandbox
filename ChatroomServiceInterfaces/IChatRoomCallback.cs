@@ -10,7 +10,14 @@ namespace ChatroomServiceInterfaces
     [ServiceContract]
     public interface IChatRoomCallback
     {
-        [OperationContract]
+        [OperationContract(IsOneWay=true)]
+        void SomebodyLoggedIn(string name);
+
+        [OperationContract(IsOneWay=true)]
+        void SomebodyLoggedOut(string name);
+
+
+        [OperationContract(IsOneWay=true)]
         void SomebodySaid(string name, string text);
     }
 }

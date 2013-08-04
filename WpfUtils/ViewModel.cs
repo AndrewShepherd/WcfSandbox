@@ -24,6 +24,14 @@ namespace WpfUtils
         readonly ConcurrentBag<string> _propertiesToNotifyOn = new ConcurrentBag<string>();
         readonly Dispatcher _mainDispatcher = Dispatcher.CurrentDispatcher;
 
+        protected Dispatcher Dispatcher
+        {
+            get
+            {
+                return _mainDispatcher;
+            }
+        }
+
         protected void Notify<U>(Expression<Func<T, U>> propName)
         {
             _propertiesToNotifyOn.Add(ExtractPropertyName(propName));
