@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfUtils", "WpfUtils\WpfUti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatroomClient", "ChatroomClient\ChatroomClient.csproj", "{9B461018-D4FE-4984-BB2F-40AB40813236}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindPrivateKey", "FindPrivateKey\CS\FindPrivateKey.csproj", "{F58C5713-2550-4820-8CAF-D083B8483A53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{9B461018-D4FE-4984-BB2F-40AB40813236}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B461018-D4FE-4984-BB2F-40AB40813236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B461018-D4FE-4984-BB2F-40AB40813236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58C5713-2550-4820-8CAF-D083B8483A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58C5713-2550-4820-8CAF-D083B8483A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58C5713-2550-4820-8CAF-D083B8483A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58C5713-2550-4820-8CAF-D083B8483A53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

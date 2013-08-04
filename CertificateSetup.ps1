@@ -1,7 +1,7 @@
  set-location C:\Users\Andrew\Documents\GitHub\WcfSandbox
 
 #Set environment variables for Visual Studio Command Prompt
-pushd 'c:\Program Files (x86)\Microsoft Visual Studio 11.0\VC'
+pushd 'c:\Program Files\Microsoft Visual Studio 11.0\VC'
 cmd /c "vcvarsall.bat&set" |
 foreach {
   if ($_ -match "=") {
@@ -19,3 +19,5 @@ makecert -n "CN=RootCATest" -r -sv RootCATest.pvk RootCATest.cer
 # Create a "certificate revocation list"
 makecert -crl -n "CN=RootCATest" -r -sv RootCATest.pvk RootCATest.crl
 
+# This creates the key. Make sure you are running powershell with admin right
+makecert -sk MyKeyName -iv RootCATest.pvk -n "CN=tempCert" -ic RootCATest.cer -sr localmachine -ss my -sky exchange -pe 

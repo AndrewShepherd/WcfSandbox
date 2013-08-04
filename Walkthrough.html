@@ -27,8 +27,10 @@
         <p>This will involve having a private key on the server, and a public key on the client</p>
         <p>The steps, as I remember, as as follows:</p>
         <ul>
-            <li>Generate a certificate using <code>makecert</code></li>
-            <li>Install this certificate into your operating system somewhere</li>
+            <li>Ensure we have a root certification authority set up.</li>
+            <li>Ensure that a revocation list is installed for this authority</li>
+            <li>Create a certificate that is signed by this root certificate authority, and load it into the certificate store</li>
+
             <li>Tell the server to use it</li>
             <li>Tell the client to expect it</li>
         </ul>
