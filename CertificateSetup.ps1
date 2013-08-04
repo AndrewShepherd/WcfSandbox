@@ -15,3 +15,7 @@ write-host "`nVisual Studio 2010 Command Prompt variables set." -ForegroundColor
 # This sets up the certificate
 # Would be good if I can specify "No Password"
 makecert -n "CN=RootCATest" -r -sv RootCATest.pvk RootCATest.cer
+
+# Create a "certificate revocation list"
+makecert -crl -n "CN=RootCATest" -r -sv RootCATest.pvk RootCATest.crl
+
