@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC927CE0-CF35-4A74-8F35-206656A76C21}"
 	ProjectSection(SolutionItems) = preProject
+		CertificateSetup.ps1 = CertificateSetup.ps1
+		CertificateTearDown.ps1 = CertificateTearDown.ps1
 		Walkthrough.html = Walkthrough.html
 	EndProjectSection
 EndProject
