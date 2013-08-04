@@ -1,4 +1,4 @@
-set-location C:\Users\Andrew\Documents\GitHub\WcfSandbox
+ set-location C:\Users\Andrew\Documents\GitHub\WcfSandbox
 
 #Set environment variables for Visual Studio Command Prompt
 pushd 'c:\Program Files (x86)\Microsoft Visual Studio 11.0\VC'
