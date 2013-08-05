@@ -104,6 +104,10 @@
       <Project>{3c65972e-f1ac-4f43-b80e-7977bb39eb59}</Project>
       <Name>ChatroomServiceInterfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WpfControls\WpfControls.csproj">
+      <Project>{3f7dd806-5857-4ea7-ab55-10a125b6a1c8}</Project>
+      <Name>WpfControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WpfUtils\WpfUtils.csproj">
       <Project>{014f9837-eb50-4a7d-9396-cd3aba1cd91b}</Project>
       <Name>WpfUtils</Name>

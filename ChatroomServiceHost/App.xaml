@@ -1,8 +1,12 @@
 ﻿<Application x:Class="ChatroomServiceHost.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:WpfControls="clr-namespace:WpfControls;assembly=WpfControls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type System:Exception}">
+            <WpfControls:ExceptionDisplay />
+        </DataTemplate>
     </Application.Resources>
 </Application>

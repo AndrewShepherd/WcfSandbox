@@ -5,6 +5,8 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <local:ChatroomClientViewModel x:Key="ViewModel" />
+        
+
     </Window.Resources>
     <Grid DataContext="{StaticResource ViewModel}">
         <Grid.RowDefinitions>
@@ -23,8 +25,6 @@
             <Button Grid.Column="2" Command="{Binding LogInCommand}">Log In</Button>
             <Button Grid.Column="3" Command="{Binding LogOutCommand}">Log Out</Button>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Events}">
-
-        </ListView>
+        <ContentPresenter Grid.Row="1" Content="{Binding MainContent}" />
     </Grid>
 </Window>

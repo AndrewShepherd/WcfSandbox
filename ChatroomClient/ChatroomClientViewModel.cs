@@ -11,8 +11,32 @@ using System.Collections.ObjectModel;
 
 namespace ChatroomClient
 {
-    public class ChatroomClientViewModel : ViewModel<ChatroomClientViewModel>
+    public sealed class ChatroomClientViewModel : ViewModel<ChatroomClientViewModel>
     {
+
+
+        private object _mainContent;
+        public object MainContent
+        {
+            get
+            {
+                return _mainContent;
+            }
+            set
+            {
+                if (_mainContent != value)
+                {
+                    var disposable = _mainContent as IDisposable;
+                    if (disposable != null)
+                    {
+                        disposable.Dispose();
+                    }
+                    _mainContent = value;
+                    Notify(_ => _.MainContent);
+                }
+            }
+        }
+
 
         public bool CanLogIn
         {
@@ -61,66 +85,53 @@ namespace ChatroomClient
         {
             Action action = () =>
                 {
-                    _chatroomClientImpl = new ChatroomClientImpl();
-                    _chatroomClientImpl.SomebodyLoggedIn += SomebodyLoggedIn;
-                    _chatroomClientImpl.SomebodyLoggedOut += SomebodyLoggedOut;
-                    _channelFactory = new DuplexChannelFactory<IChatRoom>(_chatroomClientImpl, "chatRoomEndpoint");
-                    _channelFactory.Open();
-                    _chatRoom = _channelFactory.CreateChannel();
-                    _chatRoom.LogIn(this._avatarName);
-                    Notify(_ => _.CanLogIn);
-                    Notify(_ => _.CanLogOut);
+                    try
+                    {
+                        _chatroomClientImpl = new ChatroomClientImpl();
+                        _channelFactory = new DuplexChannelFactory<IChatRoom>(_chatroomClientImpl, "chatRoomEndpoint");
+                        _channelFactory.Open();
+                        _chatRoom = _channelFactory.CreateChannel();
+                        _chatRoom.LogIn(this._avatarName);
+                        Notify(_ => _.CanLogIn);
+                        Notify(_ => _.CanLogOut);
+                        this.MainContent = new ChatroomContentViewModel(_chatroomClientImpl, this.Dispatcher);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.MainContent = ex;
+                    }
                 };
             Task.Run(action);
         }
 
 
-        private readonly ObservableCollection<string> _events = new ObservableCollection<string>();
 
-        public ObservableCollection<string> Events
-        {
-            get
-            {
-                return _events;
-            }
-        }
-
-        void SomebodyLoggedIn(object sender, LoggedInEventArgs e)
-        {
-            this.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                _events.Add(string.Format("{0} logged in", e.AvatarName));
-            }));
-        }
-
-        void SomebodyLoggedOut(object sender, LoggedOutEventArgs e)
-        {
-            this.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                _events.Add(string.Format("{0} logged out", e.AvatarName));
-            }));
-        }
 
         public void LogOut()
         {
             Task.Run(() =>
                 {
-                    _chatroomClientImpl.SomebodyLoggedIn -= SomebodyLoggedIn;
-                    _chatroomClientImpl.SomebodyLoggedOut -= SomebodyLoggedOut;
-                    _chatroomClientImpl = null;
-                    _chatRoom.LogOut();
-                    ICommunicationObject communicationObject = _chatRoom as ICommunicationObject;
-                    if (communicationObject != null)
+                    try
                     {
-                        communicationObject.Close();
+                        _chatroomClientImpl = null;
+                        _chatRoom.LogOut();
+                        ICommunicationObject communicationObject = _chatRoom as ICommunicationObject;
+                        if (communicationObject != null)
+                        {
+                            communicationObject.Close();
+                        }
+
+                        _channelFactory.Close();
+
+                        _chatRoom = null;
+                        _channelFactory = null;
+                        Notify(_ => _.CanLogIn);
+                        Notify(_ => _.CanLogOut);
                     }
-
-                    _channelFactory.Close();
-
-                    _chatRoom = null;
-                    _channelFactory = null;
-                    Notify(_ => _.CanLogIn);
-                    Notify(_ => _.CanLogOut);
+                    catch (Exception ex)
+                    {
+                        this.MainContent = ex;
+                    }
                 });
         }
 

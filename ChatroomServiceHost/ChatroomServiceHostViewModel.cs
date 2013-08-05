@@ -22,13 +22,45 @@ namespace ChatroomServiceHost
         ServiceHost _serviceHost;
         ChatroomService _serviceInstance;
 
+
+
+        private object _mainDisplayContent = null;
+        public object MainDisplayContent
+        {
+            get
+            {
+                return _mainDisplayContent;
+            }
+            set
+            {
+                if (_mainDisplayContent != value)
+                {
+                    _mainDisplayContent = value;
+                    Notify(_ => _.MainDisplayContent);
+                }
+            }
+        }
+
+
         public void OpenHost()
         {
-            _serviceInstance = new ChatroomService();
-            _serviceHost = new ServiceHost(_serviceInstance);
-            _serviceHost.Open();
-            Notify(_ => _.CanOpenHost);
-            Notify(_ => _.CanCloseHost);
+            Task.Run(() =>
+                {
+                    try
+                    {
+                        _serviceInstance = new ChatroomService();
+                        _serviceHost = new ServiceHost(_serviceInstance);
+                        _serviceHost.Open();
+                        Notify(_ => _.CanOpenHost);
+                        Notify(_ => _.CanCloseHost);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.MainDisplayContent = ex;
+                        _serviceHost = null;
+                    }
+                }
+            );
 
         }
 

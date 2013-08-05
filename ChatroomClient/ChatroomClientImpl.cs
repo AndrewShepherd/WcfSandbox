@@ -9,12 +9,12 @@ using ChatroomServiceInterfaces;
 
 namespace ChatroomClient
 {
-    class LoggedInEventArgs : EventArgs
+    public class LoggedInEventArgs : EventArgs
     {
         public string AvatarName { get; set; }
     }
 
-    class LoggedOutEventArgs : EventArgs
+    public class LoggedOutEventArgs : EventArgs
     {
         public string AvatarName { get; set; }
     }
@@ -22,7 +22,7 @@ namespace ChatroomClient
 
 
 
-    class ChatroomClientImpl : IChatRoomCallback
+    public class ChatroomClientImpl : IChatRoomCallback
     {
 
         public event EventHandler<LoggedInEventArgs> SomebodyLoggedIn;
