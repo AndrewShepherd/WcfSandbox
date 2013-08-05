@@ -1,7 +1,17 @@
- set-location C:\Users\Andrew\Documents\GitHub\WcfSandbox
+ # These values will have to change depending upon the location
+ 
+ $workingLocation = 'C:\Users\ashepherd\Documents\GitHub\WcfSandbox';
+ 
+ $visualStudioLocation = 'C:\Program Files (x86)\Microsoft Visual Studio 11.0';
+
+ 
+ set-location $workingLocation
 
 #Set environment variables for Visual Studio Command Prompt
-pushd 'c:\Program Files\Microsoft Visual Studio 11.0\VC'
+$vsCommandPrompt = (join-path -Path  $visualStudioLocation -ChildPath "VC")
+
+
+pushd $vsCommandPrompt
 cmd /c "vcvarsall.bat&set" |
 foreach {
   if ($_ -match "=") {

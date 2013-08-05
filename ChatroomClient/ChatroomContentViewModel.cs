@@ -14,6 +14,7 @@ namespace ChatroomClient
         private readonly ChatroomClientImpl _chatRoomClientImpl;
 
         public ChatroomContentViewModel(ChatroomClientImpl chatRoomClientImpl, Dispatcher uiThreadDispatcher)
+            : base(uiThreadDispatcher)
         {
             _chatRoomClientImpl = chatRoomClientImpl;
             _chatRoomClientImpl.SomebodyLoggedIn += SomebodyLoggedIn;
